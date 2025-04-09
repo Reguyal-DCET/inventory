@@ -4,14 +4,23 @@
   <meta charset="UTF-8">
   <title>Inventory Management System</title>
   <style src="IMS.css"></style>
-  </head>
+  <script scr="Script.js"></script>
+</head>
 <body>
+  <h2>Inventory Management System</h2>
 
-<h2>Inventory Management System</h2>
 
 <div class="container">
   <div class="sidebar">
+      <input
+  type="text"
+  id="searchInput"
+  placeholder="Search by name..."
+  style="width: 100%; padding: 6px; margin-bottom: 12px;"
+>
+  
     <h3>Filter by Type</h3>
+    
     <div class="filters">
       <label><input type="checkbox" class="category" value="Furniture">Furniture</label>
       <label><input type="checkbox" class="category" value="Clothing">Clothing</label>
@@ -73,8 +82,5 @@
         <button onclick="closeModal()">Cancel</button>
     </div>
 </div>
-    <script src=script.js></script>
-
 </body>
-
 </html>
