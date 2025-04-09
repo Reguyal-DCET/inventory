@@ -1,65 +1,59 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="IMS.css">
-    <link rel="stylesheet" href="Font/stylesheet.css">
-    <link rel="stylesheet" href="FontLight/stylesheet.css">
-    <title>Inventory Management</title>
-</head>
+  <meta charset="UTF-8">
+  <title>Inventory Management System</title>
+  <style src="IMS.css"></style>
+  </head>
 <body>
-    <div class="container">
-        <h1>Inventory Management</h1>
-        
-        <div class="top-section">
-            <div class="side-controls">
-                <div class="search-bar">
-                    <input type="text" id="searchBar" onkeyup="searchItems()" placeholder="Search items...">
-                    <button onclick="searchItems()">🔍</button>
-                </div>
-                <div class="filters">
-                    <h3>Filter by Type</h3>
-                    <label><input type="checkbox" class="filterCheckbox" value="School Supplies" onclick="filterItems()"> School Supplies</label>
-                    <label><input type="checkbox" class="filterCheckbox" value="Furniture" onclick="filterItems()"> Furniture</label>
-                    <label><input type="checkbox" class="filterCheckbox" value="Clothing" onclick="filterItems()"> Clothing</label>
-                    <label><input type="checkbox" class="filterCheckbox" value="Books" onclick="filterItems()"> Books</label>
-                    <label><input type="checkbox" class="filterCheckbox" value="Toys" onclick="filterItems()"> Toys</label>
-                    <label><input type="checkbox" class="filterCheckbox" value="Appliances" onclick="filterItems()"> Appliances</label>
-                    <label><input type="checkbox" class="filterCheckbox" value="Body Care" onclick="filterItems()"> Body Care</label>
-                    <label><input type="checkbox" class="filterCheckbox" value="Accessories" onclick="filterItems()"> Accessories</label>
-                </div>
-                <div class="sorting">
-                    <h1>Sort by</h1>
-                    <select id="sortOptions">
-                        <option value="">Select...</option>
-                        <option value="quantity">Quantity</option>
-                        <option value="price">Price</option>
-                    </select>
-                    <button id="sortButton" data-order="asc" onclick="sortItems()">🔼🔽</button>
-                </div>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Details</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Type</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="inventory-body">
-                </tbody>
-            </table>
-        </div>
-      <div class="button-container">
-        <button onclick="openModal()">Add Item</button>
-      </div>
+
+<h2>Inventory Management System</h2>
+
+<div class="container">
+  <div class="sidebar">
+    <h3>Filter by Type</h3>
+    <div class="filters">
+      <label><input type="checkbox" class="category" value="Furniture">Furniture</label>
+      <label><input type="checkbox" class="category" value="Clothing">Clothing</label>
+      <label><input type="checkbox" class="category" value="Appliances">Appliances</label>
+      <label><input type="checkbox" class="category" value="Body Care">Body Care</label>
+      <label><input type="checkbox" class="category" value="Toys">Toys</label>
+      <label><input type="checkbox" class="category" value="Books">Books</label>
+      <label><input type="checkbox" class="category" value="Accessories">Accessories</label>
+      <label><input type="checkbox" class="category" value="School Supplies">School Supplies</label>
     </div>
 
-    <div id="itemModal" class="modal">
+    <div class="sort-container">
+      <label for="sortOption"><strong>Sort by:</strong></label>
+     <select id="sortOption">
+  <option value="name">Name</option>
+  <option value="price">Price</option>
+  <option value="quantity">Quantity</option>
+</select>
+    </div>
+  </div>
+
+  <div class="content">
+    <table id="inventoryTable">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Details</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<button class="add-btn" onclick="openModal()">+ Add Item</button>
+
+
+<div id="itemModal" class="modal">
         <h2>Create Item</h2>
         <input type="text" id="itemName" placeholder="Name">
         <input type="text" id="itemDetails" placeholder="Details">
@@ -78,5 +72,9 @@
         <button onclick="addItem()">Add</button>
         <button onclick="closeModal()">Cancel</button>
     </div>
+</div>
+    <script src=script.js></script>
+
 </body>
+
 </html>
