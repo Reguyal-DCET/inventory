@@ -1,4 +1,4 @@
-  let inventory = [
+let inventory = [
     { name: "Office Chair", details: "Ergonomic", quantity: 5, price: 60, type: "Furniture" },
     { name: "T-Shirt", details: "Cotton", quantity: 20, price: 15, type: "Clothing" },
     { name: "Notebook", details: "200 pages", quantity: 50, price: 3, type: "School Supplies" },
@@ -30,23 +30,38 @@
   }
 
   function filterAndSort() {
-    let filtered = [...inventory];
-    const selected = Array.from(categoryCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-    if (selected.length > 0) {
-      filtered = filtered.filter(item => selected.includes(item.type));
-    }
+  let filtered = [...inventory];
 
-    switch (sortOption.value) {
-  case "name-asc": filtered.sort((a, b) => a.name.localeCompare(b.name)); break;
-  case "name-desc": filtered.sort((a, b) => b.name.localeCompare(a.name)); break;
-  case "price-asc": filtered.sort((a, b) => a.price - b.price); break;
-  case "price-desc": filtered.sort((a, b) => b.price - a.price); break;
-  case "quantity-asc": filtered.sort((a, b) => a.quantity - b.quantity); break;
-  case "quantity-desc": filtered.sort((a, b) => b.quantity - a.quantity); break;
-}
-    renderTable(filtered);
+  const selectedTypes = Array.from(categoryCheckboxes)
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+
+  const searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+
+  // Filter by type
+  if (selectedTypes.length > 0) {
+    filtered = filtered.filter(item => selectedTypes.includes(item.type));
   }
 
+  // Filter by search
+  if (searchTerm) {
+    filtered = filtered.filter(item =>
+      item.name.toLowerCase().includes(searchTerm)
+    );
+  }
+
+  // Sort
+  const sortBy = sortOption.value;
+  if (sortBy === "name") {
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortBy === "price") {
+    filtered.sort((a, b) => a.price - b.price);
+  } else if (sortBy === "quantity") {
+    filtered.sort((a, b) => a.quantity - b.quantity);
+  }
+
+  renderTable(filtered);
+}
   function openModal() {
     document.getElementById('itemModal').style.display = 'block';
 }
@@ -128,3 +143,5 @@ function resetModal() {
   sortOption.addEventListener("change", filterAndSort);
 
   renderTable(inventory);
+    
+document.getElementById("searchInput").addEventListener("input", filterAndSort);
